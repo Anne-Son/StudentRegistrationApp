@@ -17,5 +17,10 @@ namespace StudentRegistrationApp
         {
             InitializeComponent();
         }
+
+        private void StudentRegistrationMainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
