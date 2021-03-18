@@ -39,11 +39,11 @@ namespace StudentRegistrationApp
             }
             //common setup for datagridview controls
 
-            InitializeDataGridView<Student>(dataGridViewStudents, "Students");
-            InitializeDataGridView<Course>(dataGridViewCourses, "Courses");
-            InitializeDataGridView<Department>(dataGridViewDepartments, "Departments");
+            InitializeDataGridView<Student>(dataGridViewStudents, "Department","Courses");
+            InitializeDataGridView<Course>(dataGridViewCourses, "Department","Students");
+            InitializeDataGridView<Department>(dataGridViewDepartments, "Courses","Students");
           //TODO REgistration
-            //  InitializeDataGridView<StudentCourse>(dataGridViewRegistration, "Registration");
+            //  InitializeDataGridView<StudentCourse>(dataGridViewRegistration);
         }
 
         private void InitializeDataGridView<T>(DataGridView dataGridView, params string[] columnsToHide) where T : class
@@ -64,8 +64,8 @@ namespace StudentRegistrationApp
 
             dataGridView.DataSource = Controller<StudentRegistrationEntities, T>.SetBindingList();
 
-            foreach (string column in columnsToHide)
-                dataGridView.Columns[column].Visible = false;
+           foreach (string column in columnsToHide)
+           dataGridView.Columns[column].Visible = false;
         }
 
         private void DeletingRow<T>(DataGridView dataGridView, DataGridViewRowCancelEventArgs e) where T : class
