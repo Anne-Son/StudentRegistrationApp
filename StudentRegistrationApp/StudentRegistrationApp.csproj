@@ -56,11 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StudentRegistrationMainForm.cs">
+    <Compile Include="StudentRegistrationAppMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StudentRegistrationMainForm.Designer.cs">
-      <DependentUpon>StudentRegistrationMainForm.cs</DependentUpon>
+    <Compile Include="StudentRegistrationAppMainForm.Designer.cs">
+      <DependentUpon>StudentRegistrationAppMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentRegistrationAppProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +73,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StudentRegistrationAppMainForm.resx">
+      <DependentUpon>StudentRegistrationAppMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
