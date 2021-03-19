@@ -56,17 +56,17 @@ namespace StudentRegistrationApp
             this.dataGridViewStudents.Name = "dataGridViewStudents";
             this.dataGridViewStudents.RowHeadersWidth = 51;
             this.dataGridViewStudents.RowTemplate.Height = 24;
-            this.dataGridViewStudents.Size = new System.Drawing.Size(455, 150);
+            this.dataGridViewStudents.Size = new System.Drawing.Size(490, 150);
             this.dataGridViewStudents.TabIndex = 0;
             // 
             // dataGridViewDepartments
             // 
             this.dataGridViewDepartments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDepartments.Location = new System.Drawing.Point(604, 55);
+            this.dataGridViewDepartments.Location = new System.Drawing.Point(639, 55);
             this.dataGridViewDepartments.Name = "dataGridViewDepartments";
             this.dataGridViewDepartments.RowHeadersWidth = 51;
             this.dataGridViewDepartments.RowTemplate.Height = 24;
-            this.dataGridViewDepartments.Size = new System.Drawing.Size(353, 150);
+            this.dataGridViewDepartments.Size = new System.Drawing.Size(414, 150);
             this.dataGridViewDepartments.TabIndex = 1;
             // 
             // dataGridViewCourses
@@ -76,7 +76,7 @@ namespace StudentRegistrationApp
             this.dataGridViewCourses.Name = "dataGridViewCourses";
             this.dataGridViewCourses.RowHeadersWidth = 51;
             this.dataGridViewCourses.RowTemplate.Height = 24;
-            this.dataGridViewCourses.Size = new System.Drawing.Size(455, 150);
+            this.dataGridViewCourses.Size = new System.Drawing.Size(490, 150);
             this.dataGridViewCourses.TabIndex = 2;
             // 
             // dataGridViewRegistrations
@@ -86,7 +86,7 @@ namespace StudentRegistrationApp
             this.dataGridViewRegistrations.Name = "dataGridViewRegistrations";
             this.dataGridViewRegistrations.RowHeadersWidth = 51;
             this.dataGridViewRegistrations.RowTemplate.Height = 24;
-            this.dataGridViewRegistrations.Size = new System.Drawing.Size(718, 150);
+            this.dataGridViewRegistrations.Size = new System.Drawing.Size(784, 150);
             this.dataGridViewRegistrations.TabIndex = 3;
             // 
             // labelStudents
@@ -119,7 +119,7 @@ namespace StudentRegistrationApp
             // labelDepartments
             // 
             this.labelDepartments.AutoSize = true;
-            this.labelDepartments.Location = new System.Drawing.Point(601, 21);
+            this.labelDepartments.Location = new System.Drawing.Point(636, 21);
             this.labelDepartments.Name = "labelDepartments";
             this.labelDepartments.Size = new System.Drawing.Size(89, 17);
             this.labelDepartments.TabIndex = 7;
@@ -128,7 +128,7 @@ namespace StudentRegistrationApp
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(891, 460);
+            this.labelDescription.Location = new System.Drawing.Point(1000, 460);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(180, 119);
             this.labelDescription.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace StudentRegistrationApp
             // buttonAddOrUpdateStudent
             // 
             this.buttonAddOrUpdateStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddOrUpdateStudent.Location = new System.Drawing.Point(500, 84);
+            this.buttonAddOrUpdateStudent.Location = new System.Drawing.Point(535, 84);
             this.buttonAddOrUpdateStudent.Name = "buttonAddOrUpdateStudent";
             this.buttonAddOrUpdateStudent.Size = new System.Drawing.Size(86, 93);
             this.buttonAddOrUpdateStudent.TabIndex = 9;
@@ -148,7 +148,7 @@ namespace StudentRegistrationApp
             // buttonAddOrUpdateCourse
             // 
             this.buttonAddOrUpdateCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddOrUpdateCourse.Location = new System.Drawing.Point(508, 282);
+            this.buttonAddOrUpdateCourse.Location = new System.Drawing.Point(535, 284);
             this.buttonAddOrUpdateCourse.Name = "buttonAddOrUpdateCourse";
             this.buttonAddOrUpdateCourse.Size = new System.Drawing.Size(86, 93);
             this.buttonAddOrUpdateCourse.TabIndex = 10;
@@ -158,7 +158,7 @@ namespace StudentRegistrationApp
             // buttonAddOrUpdateDepartment
             // 
             this.buttonAddOrUpdateDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddOrUpdateDepartment.Location = new System.Drawing.Point(980, 84);
+            this.buttonAddOrUpdateDepartment.Location = new System.Drawing.Point(1078, 84);
             this.buttonAddOrUpdateDepartment.Name = "buttonAddOrUpdateDepartment";
             this.buttonAddOrUpdateDepartment.Size = new System.Drawing.Size(102, 93);
             this.buttonAddOrUpdateDepartment.TabIndex = 11;
@@ -168,7 +168,7 @@ namespace StudentRegistrationApp
             // buttonRegister
             // 
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(780, 469);
+            this.buttonRegister.Location = new System.Drawing.Point(889, 469);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(92, 36);
             this.buttonRegister.TabIndex = 12;
@@ -178,7 +178,7 @@ namespace StudentRegistrationApp
             // buttonDrop
             // 
             this.buttonDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDrop.Location = new System.Drawing.Point(780, 532);
+            this.buttonDrop.Location = new System.Drawing.Point(889, 532);
             this.buttonDrop.Name = "buttonDrop";
             this.buttonDrop.Size = new System.Drawing.Size(92, 37);
             this.buttonDrop.TabIndex = 13;
@@ -189,7 +189,7 @@ namespace StudentRegistrationApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 657);
+            this.ClientSize = new System.Drawing.Size(1233, 657);
             this.Controls.Add(this.buttonDrop);
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.buttonAddOrUpdateDepartment);
