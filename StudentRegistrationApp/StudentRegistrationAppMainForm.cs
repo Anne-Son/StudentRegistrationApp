@@ -24,6 +24,13 @@ namespace StudentRegistrationApp
             //Set button events for operating on various tables. Make use of single generic method for this
             //(AddOrUpdateForm), specifying the type of data, the gridview to update, and the form to open
 
+            //We need a single form to add or updaate each student, department and course
+            AddOrUpdateStudentForm addOrUpdateStudentForm = new AddOrUpdateStudentForm();
+            buttonAddOrUpdateStudent.Click += (s, e) => AddOrUpdateForm<Student>(dataGridViewStudents, addOrUpdateStudentForm);
+
+            AddOrUpdateDepartmentForm addOrUpdateDepartmentForm = new AddOrUpdateDepartmentForm();
+            buttonAddOrUpdateDepartment.Click += (s, e) => AddOrUpdateForm<Department>(dataGridViewDepartments, addOrUpdateDepartmentForm);
+
             //TO DO ADD OR UPDATE 
 
             // TO DO REGISTER AND REGISTER AND DROP
