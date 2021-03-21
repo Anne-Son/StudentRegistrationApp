@@ -29,6 +29,8 @@ namespace StudentRegistrationApp
 
             //register event handler for when a course is selected
             listBoxCourses.SelectedIndexChanged += (s, e) => GetCourses();
+
+
         }
 
         private void GetCourses()
@@ -38,10 +40,6 @@ namespace StudentRegistrationApp
             textBoxCourseNumber.Text = course.CourseNumber.ToString();
             textBoxCourseName.Text = course.CourseName;
 
-            if (listBoxDepartment.SelectedIndex > -1)
-            {
-                listBoxDepartment.SelectedIndex = (int)course.DepartmentId - 1;
-            }
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
@@ -53,12 +51,8 @@ namespace StudentRegistrationApp
                 MessageBox.Show("Course must be selected");
                 return;
             }
-
-            string text = textBoxCourseNumber.Text;
-
-            course.CourseNumber = int.Parse(text);
+            course.CourseNumber = Convert.ToInt32(textBoxCourseNumber.Text);
             course.CourseName = textBoxCourseName.Text;
-            course.DepartmentId = listBoxDepartment.SelectedIndex;
 
             if (Controller<StudentRegistrationEntities, Course>.UpdateEntity(course) == false)
             {
@@ -69,18 +63,30 @@ namespace StudentRegistrationApp
             this.DialogResult = DialogResult.OK;
 
             Close();
+
+
+
+
+
+
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+          
+            //get the department
+            if (!(listBoxDepartment.SelectedItem is Department department))
+            {
+                MessageBox.Show("Department to be selected");
+                return;
+            }
             // get the course data from the textboxes
-
             string text = textBoxCourseNumber.Text;
             Course course = new Course()
             {
-                CourseNumber = int.Parse(text),
+                CourseNumber = Convert.ToInt32(textBoxCourseNumber.Text),
                 CourseName = textBoxCourseName.Text,
-                DepartmentId = listBoxDepartment.SelectedIndex
+                DepartmentId = department.DepartmentId
 
             };
 
@@ -99,13 +105,12 @@ namespace StudentRegistrationApp
         private void AddOrUpdateCourseForm_Load(object sender, EventArgs e)
         {
             // bind the listbox of courses to the inventory table.
-            listBoxCourses.DataSource = Controller<StudentRegistrationEntities, Course>.SetBindingList();
+        
+            listBoxCourses.DataSource = Controller<StudentRegistrationEntities, Course>.GetEntitiesWithIncluded("Department");
 
             //select only the departmentCode to display in the listbox
-            var departments = Controller<StudentRegistrationEntities, Department>.SetBindingList();
-            var departmentsCode = departments.Select(c => c.DepartmentCode).ToList();
-            listBoxDepartment.DataSource = departmentsCode;
-
+            
+            listBoxDepartment.DataSource = Controller<StudentRegistrationEntities, Department>.SetBindingList();
 
             //no course is selected to start
             listBoxCourses.SelectionMode = SelectionMode.One;
@@ -116,6 +121,17 @@ namespace StudentRegistrationApp
             //set all textboxes to blank
             textBoxCourseNumber.ResetText();
             textBoxCourseName.ResetText();
+
+
+
+            
+
+
+         
+
+
+
+
         }
     }
 }
