@@ -31,7 +31,11 @@ namespace StudentRegistrationApp
             listBoxStudents.SelectedIndexChanged += (s, e) => GetStudents();
            
         }
-
+        /// <summary>
+        /// Loading the form with data, reseting textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddOrUpdateStudentForm_Load(object sender, EventArgs e)
         {
             // bind the listbox of students to the inventory table.
@@ -51,6 +55,9 @@ namespace StudentRegistrationApp
             textBoxLastName.ResetText();
             
         }
+        /// <summary>
+        /// getting students from database
+        /// </summary>
         private void GetStudents()
         {
             if (!(listBoxStudents.SelectedItem is Student student))
@@ -64,7 +71,11 @@ namespace StudentRegistrationApp
             }
 
         }
-
+        /// <summary>
+        /// When button clicked update student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             //making sure a student is selected
@@ -88,6 +99,11 @@ namespace StudentRegistrationApp
 
             Close();
         }
+        /// <summary>
+        /// When button click add student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             //get the student data from the textboxes and listbox

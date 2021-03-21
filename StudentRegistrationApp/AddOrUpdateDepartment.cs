@@ -30,6 +30,11 @@ namespace StudentRegistrationApp
 
             listBoxDepartment.SelectedIndexChanged += (s, e) => GetDepartment();
         }
+        /// <summary>
+        /// Load the Department add or update form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddOrUpdateStudentForm_Load(object sender, EventArgs e)
         {
             // bind the listbox of deparment to the inventory table.
@@ -44,6 +49,9 @@ namespace StudentRegistrationApp
 
         }
 
+        /// <summary>
+        /// Getting the departments from db
+        /// </summary>
         private void GetDepartment()
         {
             if (!(listBoxDepartment.SelectedItem is Department department))
@@ -52,6 +60,11 @@ namespace StudentRegistrationApp
             textBoxDepartmentName.Text = department.DepartmentName;
 
         }
+        /// <summary>
+        /// When click on update button update Department
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             //making sure a department is selected
@@ -74,6 +87,11 @@ namespace StudentRegistrationApp
 
             Close();
         }
+        /// <summary>
+        /// When click on add button add Department
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             //get the department data from the textboxes and listbox

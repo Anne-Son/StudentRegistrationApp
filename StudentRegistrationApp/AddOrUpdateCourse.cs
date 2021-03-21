@@ -30,18 +30,22 @@ namespace StudentRegistrationApp
             //register event handler for when a course is selected
             listBoxCourses.SelectedIndexChanged += (s, e) => GetCourses();
 
-
         }
-
+        /// <summary>
+        /// Method for Getting the courses
+        /// </summary>
         private void GetCourses()
         {
             if (!(listBoxCourses.SelectedItem is Course course))
                 return;
             textBoxCourseNumber.Text = course.CourseNumber.ToString();
             textBoxCourseName.Text = course.CourseName;
-
         }
-
+        /// <summary>
+        /// When click the button update the row of courses
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             //making sure course is selected
@@ -64,16 +68,14 @@ namespace StudentRegistrationApp
 
             Close();
 
-
-
-
-
-
         }
-
+        /// <summary>
+        /// When button clicked. Add the data typed in text boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-          
             //get the department
             if (!(listBoxDepartment.SelectedItem is Department department))
             {
@@ -81,7 +83,6 @@ namespace StudentRegistrationApp
                 return;
             }
             // get the course data from the textboxes
-            string text = textBoxCourseNumber.Text;
             Course course = new Course()
             {
                 CourseNumber = Convert.ToInt32(textBoxCourseNumber.Text),
@@ -102,6 +103,11 @@ namespace StudentRegistrationApp
             Close();
         }
 
+        /// <summary>
+        ///  Load the Add or update course form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddOrUpdateCourseForm_Load(object sender, EventArgs e)
         {
             // bind the listbox of courses to the inventory table.
@@ -121,17 +127,6 @@ namespace StudentRegistrationApp
             //set all textboxes to blank
             textBoxCourseNumber.ResetText();
             textBoxCourseName.ResetText();
-
-
-
-            
-
-
-         
-
-
-
-
         }
     }
 }

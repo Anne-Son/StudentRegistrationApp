@@ -34,17 +34,9 @@ namespace StudentRegistrationApp
             AddOrUpdateCourseForm addOrUpdateCourseForm = new AddOrUpdateCourseForm();
             buttonAddOrUpdateCourse.Click += (s, e) => AddOrUpdateForm<Course>(dataGridViewCourses, addOrUpdateCourseForm);
 
-            //TO DO ADD OR UPDATE 
-
-
-            
-
-            // REGISTER AND DROP
-
+            //Register event handlers
             buttonRegister.Click += ButtonRegister_Click;
             buttonDrop.Click += ButtonDrop_Click;
-
-
 
         }
         /// <summary>
@@ -73,13 +65,11 @@ namespace StudentRegistrationApp
                     course.Students.Remove(context.Students.Where(s => s.StudentId == id).FirstOrDefault());
                     context.SaveChanges();
 
-
                 }
 
             }
            
             dispalyRegistration();
-
 
         }
         /// <summary>
@@ -101,8 +91,7 @@ namespace StudentRegistrationApp
 
             }
             dispalyRegistration();
-                
-          
+
         }
 
         /// <summary>
@@ -120,7 +109,6 @@ namespace StudentRegistrationApp
             InitializeDataGridView<Course>(dataGridViewCourses, "Department","Students");
             InitializeDataGridView<Department>(dataGridViewDepartments, "Courses","Students");
 
-
             //for Registrationdatagrid
             dataGridViewRegistrations.AllowUserToAddRows = false;
             dataGridViewRegistrations.AllowUserToDeleteRows = true;
@@ -129,9 +117,11 @@ namespace StudentRegistrationApp
 
             //dispaly registration 
             dispalyRegistration();
-          
-           
+
         }
+        /// <summary>
+        /// Displaying registration table
+        /// </summary>
         private void dispalyRegistration()
         {
             using (StudentRegistrationEntities context = new StudentRegistrationEntities())
@@ -147,26 +137,17 @@ namespace StudentRegistrationApp
                                                 StudentLastName = student.StudentLastName,
 
                                             }).ToList();
-                /* DataGridViewColumn[] columns = new DataGridViewColumn[] {
-                                                 new DataGridViewTextBoxColumn() { Name = "Building ID" },
-                                                 new DataGridViewTextBoxColumn() { Name = "Address" },
-                                                 new DataGridViewTextBoxColumn() { Name = "Building Name" },
-                                                 new DataGridViewTextBoxColumn() { Name = "Number Of Residences" },
-                                                 new DataGridViewTextBoxColumn() { Name = "Neighborhood" } };
-                 dataGridViewRegistrations.Columns.AddRange(columns);
-                 context.Students.Include(s => s.Courses).Load();
-                 foreach (Student student in context.Students)
-                 {
-                     foreach (Course course in student.Courses)
-                     {
-                         dataGridViewRegistrations.Rows.Add(student.DepartmentId, course.CourseName);
-                     }
-                 }*/
 
                 dataGridViewRegistrations.DataSource = studentRegistrations;
 
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataGridView"></param>
+        /// <param name="columnsToHide"></param>
         private void InitializeDataGridView<T>(DataGridView dataGridView, params string[] columnsToHide) where T : class
         {
             //Allow users to add/delete rows, and fill out columns to the entire width  of the control
@@ -189,6 +170,12 @@ namespace StudentRegistrationApp
             dataGridView.Columns[column].Visible = false;
         }
 
+        /// <summary>
+        /// Method for deleting a row in the registration datagridview
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataGridView"></param>
+        /// <param name="e"></param>
         private void DeletingRow<T>(DataGridView dataGridView, DataGridViewRowCancelEventArgs e) where T : class
         {
             //get the item
@@ -201,14 +188,25 @@ namespace StudentRegistrationApp
             Controller<StudentRegistrationEntities, T>.DeleteEntity(item);
             dataGridView.Refresh();
 
-            //TO DO!!
         }
 
+        /// <summary>
+        /// Method to handle error
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="gridView"></param>
+        /// <param name="e"></param>
         private void HandleDataError<T>(DataGridView gridView, DataGridViewDataErrorEventArgs e)
         {
             Debug.WriteLine("DataError " + typeof(T) + " " + gridView.Name + " row " + e.RowIndex + " col " + e.ColumnIndex + " Context: " + e.Context.ToString());
             e.Cancel = true;
         }
+        /// <summary>
+        /// A generic method to add or update form
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataGridView"></param>
+        /// <param name="form"></param>
         private void AddOrUpdateForm<T>(DataGridView dataGridView, Form form) where T : class
         {
             var result = form.ShowDialog();
@@ -221,10 +219,6 @@ namespace StudentRegistrationApp
 
                 dataGridView.DataSource = Controller<StudentRegistrationEntities, T>.SetBindingList();
 
-                
-
-
-            
             }
 
             // do not close, as the form object will be disposed, 
