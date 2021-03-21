@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOrUpdateCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOrUpdateCourse.Designer.cs">
+      <DependentUpon>AddOrUpdateCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOrUpdateDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </Compile>
     <Compile Include="StudentRegistrationAppProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddOrUpdateCourse.resx">
+      <DependentUpon>AddOrUpdateCourse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOrUpdateDepartment.resx">
       <DependentUpon>AddOrUpdateDepartment.cs</DependentUpon>
     </EmbeddedResource>
