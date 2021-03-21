@@ -31,6 +31,9 @@ namespace StudentRegistrationApp
            AddOrUpdateDepartmentForm addOrUpdateDepartmentForm = new AddOrUpdateDepartmentForm();
             buttonAddOrUpdateDepartment.Click += (s, e) => AddOrUpdateForm<Department>(dataGridViewDepartments, addOrUpdateDepartmentForm);
 
+            AddOrUpdateCourseForm addOrUpdateCourseForm = new AddOrUpdateCourseForm();
+            buttonAddOrUpdateCourse.Click += (s, e) => AddOrUpdateForm<Course>(dataGridViewDepartments, addOrUpdateCourseForm);
+
             //TO DO ADD OR UPDATE 
 
             // REGISTER AND DROP
