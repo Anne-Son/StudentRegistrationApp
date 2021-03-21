@@ -32,9 +32,12 @@ namespace StudentRegistrationApp
             buttonAddOrUpdateDepartment.Click += (s, e) => AddOrUpdateForm<Department>(dataGridViewDepartments, addOrUpdateDepartmentForm);
 
             AddOrUpdateCourseForm addOrUpdateCourseForm = new AddOrUpdateCourseForm();
-            buttonAddOrUpdateCourse.Click += (s, e) => AddOrUpdateForm<Course>(dataGridViewDepartments, addOrUpdateCourseForm);
+            buttonAddOrUpdateCourse.Click += (s, e) => AddOrUpdateForm<Course>(dataGridViewCourses, addOrUpdateCourseForm);
 
             //TO DO ADD OR UPDATE 
+
+
+            
 
             // REGISTER AND DROP
 
@@ -76,6 +79,7 @@ namespace StudentRegistrationApp
             }
            
             dispalyRegistration();
+
 
         }
         /// <summary>
@@ -217,11 +221,10 @@ namespace StudentRegistrationApp
 
                 dataGridView.DataSource = Controller<StudentRegistrationEntities, T>.SetBindingList();
 
-                // update the customer orders report
+                
 
-//TODO REGISTRATION TABLE
-              //  dataGridViewCustomerOrders.DataSource = Controller<AutoLotEntities, CustomerOrder>.GetEntitiesNoTracking();
-               // dataGridViewCustomerOrders.Refresh();
+
+            
             }
 
             // do not close, as the form object will be disposed, 
