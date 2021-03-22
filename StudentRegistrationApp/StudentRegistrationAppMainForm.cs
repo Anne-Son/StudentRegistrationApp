@@ -47,18 +47,23 @@ namespace StudentRegistrationApp
         private void ButtonDrop_Click(object sender, EventArgs e)
         {
             //To get the selected row from the registration table
-            var item = dataGridViewRegistrations.CurrentRow; 
+            var selectedRegistration = dataGridViewRegistrations.SelectedRows
+                  .OfType<DataGridViewRow>()
+                  .Where(row => !row.IsNewRow)
+                  .ToArray();
             //Checking if the row is selected
-            if(item != null)
+
+            foreach (var row in selectedRegistration)
             {
                 using (StudentRegistrationEntities context = new StudentRegistrationEntities())
                 {
+                    
                     //getting the selected courseNumber
-                    int val = (int)item.Cells[1].Value;
+                    int val = (int)row.Cells[1].Value;
                     //getting the selected course name
-                    String courseName = (String)item.Cells[2].Value;
+                    String courseName = (String)row.Cells[2].Value;
                     //getting the selected studentId
-                    int id = (int)item.Cells[3].Value;
+                    int id = (int)row.Cells[3].Value;
 
                     //select the corusre and delete the student from it
                     Course course = context.Courses.Include("Students").Where(c => c.CourseNumber == val && c.CourseName == courseName).FirstOrDefault();
@@ -68,7 +73,12 @@ namespace StudentRegistrationApp
                 }
 
             }
-           
+
+
+
+
+
+
             dispalyRegistration();
 
         }
