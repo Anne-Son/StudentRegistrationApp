@@ -81,13 +81,35 @@ namespace StudentRegistrationApp
         {
            using(StudentRegistrationEntities context = new StudentRegistrationEntities())
             {
-                //get the selected row from both datagridviews
+
+                var selectedCourses =dataGridViewCourses.SelectedRows
+            .OfType<DataGridViewRow>()
+            .Where(row => !row.IsNewRow)
+            .ToArray();
+                var selectedStudent = dataGridViewStudents.SelectedRows
+            .OfType<DataGridViewRow>()
+            .Where(row => !row.IsNewRow)
+            .ToArray();
+
+                foreach (var stu in selectedStudent)
+                {
+                    foreach (var cours in selectedCourses)
+                    {
+                        Course cour =(Course) cours.DataBoundItem;
+                        Student st = (Student)stu.DataBoundItem;
+                        Course co= context.Courses.Include("Students").Where(c => c.CourseId == cour.CourseId).FirstOrDefault();
+                        co.Students.Add(context.Students.Where(s => s.StudentId == st.StudentId).FirstOrDefault());
+                        context.SaveChanges();
+                    }
+
+                }
+             /*   //get the selected row from both datagridviews
                 Course course = (Course)dataGridViewCourses.CurrentRow.DataBoundItem;
                 Student student = (Student)dataGridViewStudents.CurrentRow.DataBoundItem;
                 //get the course and add the student to it
                 Course cou = context.Courses.Include("Students").Where(c => c.CourseId == course.CourseId).FirstOrDefault();
                 cou.Students.Add(context.Students.Where(s => s.StudentId == student.StudentId).FirstOrDefault());
-                context.SaveChanges();
+                context.SaveChanges();*/
 
             }
             dispalyRegistration();
