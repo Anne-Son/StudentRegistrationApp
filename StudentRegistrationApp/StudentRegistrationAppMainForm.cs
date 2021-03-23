@@ -49,26 +49,33 @@ namespace StudentRegistrationApp
             //To get the selected row from the registration table
             var selectedRegistration = dataGridViewRegistrations.SelectedRows
                   .OfType<DataGridViewRow>()
-                  .Where(row => !row.IsNewRow)
                   .ToArray();
+        
             //Checking if the row is selected
 
             foreach (var row in selectedRegistration)
             {
                 using (StudentRegistrationEntities context = new StudentRegistrationEntities())
                 {
-                    
+                    var cou = (data1) row.DataBoundItem;
+                  /*  
                     //getting the selected courseNumber
                     int val = (int)row.Cells[1].Value;
                     //getting the selected course name
                     String courseName = (String)row.Cells[2].Value;
                     //getting the selected studentId
                     int id = (int)row.Cells[3].Value;
-
+                    */
                     //select the corusre and delete the student from it
-                    Course course = context.Courses.Include("Students").Where(c => c.CourseNumber == val && c.CourseName == courseName).FirstOrDefault();
-                    course.Students.Remove(context.Students.Where(s => s.StudentId == id).FirstOrDefault());
-                    context.SaveChanges();
+
+                    
+                      // labelDescription.Text = cou.CourseName.ToString();
+                    
+                    Course course = context.Courses.Include("Students").Where(c => c.CourseNumber == cou.CourseId && c.CourseName == cou.CourseName).FirstOrDefault();
+                            course.Students.Remove(context.Students.Where(s => s.StudentId == cou.StudentId).FirstOrDefault());
+                            context.SaveChanges();
+                      
+                   
 
                 }
 
@@ -169,8 +176,21 @@ namespace StudentRegistrationApp
                                                 StudentLastName = student.StudentLastName,
 
                                             }).ToList();
+                List<data1> dt = new List<data1>(studentRegistrations.Count);
+                foreach(var r in studentRegistrations)
+                {
 
-                dataGridViewRegistrations.DataSource = studentRegistrations;
+                    data1 d = new data1();
+                    d.CourseId = r.CouseNumber;
+                    d.DepartmentCode = r.DepartmentCode;
+                    d.CourseName = r.CourseName;
+                    d.StudentId = r.StudentId;
+                    d.StudentLastName = r.StudentLastName;
+                    dt.Add(d);
+                }
+
+                
+                dataGridViewRegistrations.DataSource = dt;
 
             }
         }
@@ -260,6 +280,16 @@ namespace StudentRegistrationApp
             //  and the form will be reinitialized
 
             form.Hide();
+        }
+        public  partial class data1
+        {
+            public string DepartmentCode { get; set; }
+            public Int32 CourseId { get; set; }
+            public string CourseName { get; set; }
+            public Int32 StudentId { get; set; }
+            public string StudentLastName { get; set; }
+
+
         }
     }
 }
