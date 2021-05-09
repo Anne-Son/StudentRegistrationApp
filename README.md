@@ -1,2 +1,2 @@
 # StudentRegistrationApp
-Group lab08 Entity Framework 6.0 
+Winforms using Entity Framework 6.0 
