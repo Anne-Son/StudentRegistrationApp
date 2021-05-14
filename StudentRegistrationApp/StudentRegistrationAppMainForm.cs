@@ -47,28 +47,45 @@ namespace StudentRegistrationApp
         private void ButtonDrop_Click(object sender, EventArgs e)
         {
             //To get the selected row from the registration table
-            var item = dataGridViewRegistrations.CurrentRow; 
+            var selectedRegistration = dataGridViewRegistrations.SelectedRows
+                  .OfType<DataGridViewRow>()
+                  .ToArray();
+        
             //Checking if the row is selected
-            if(item != null)
+
+            foreach (var row in selectedRegistration)
             {
                 using (StudentRegistrationEntities context = new StudentRegistrationEntities())
                 {
+                    var cou = (data1) row.DataBoundItem;
+                  /*  
                     //getting the selected courseNumber
-                    int val = (int)item.Cells[1].Value;
+                    int val = (int)row.Cells[1].Value;
                     //getting the selected course name
-                    String courseName = (String)item.Cells[2].Value;
+                    String courseName = (String)row.Cells[2].Value;
                     //getting the selected studentId
-                    int id = (int)item.Cells[3].Value;
-
+                    int id = (int)row.Cells[3].Value;
+                    */
                     //select the corusre and delete the student from it
-                    Course course = context.Courses.Include("Students").Where(c => c.CourseNumber == val && c.CourseName == courseName).FirstOrDefault();
-                    course.Students.Remove(context.Students.Where(s => s.StudentId == id).FirstOrDefault());
-                    context.SaveChanges();
+
+                    
+                      // labelDescription.Text = cou.CourseName.ToString();
+                    
+                    Course course = context.Courses.Include("Students").Where(c => c.CourseNumber == cou.CourseId && c.CourseName == cou.CourseName).FirstOrDefault();
+                            course.Students.Remove(context.Students.Where(s => s.StudentId == cou.StudentId).FirstOrDefault());
+                            context.SaveChanges();
+                      
+                   
 
                 }
 
             }
-           
+
+
+
+
+
+
             dispalyRegistration();
 
         }
@@ -81,13 +98,35 @@ namespace StudentRegistrationApp
         {
            using(StudentRegistrationEntities context = new StudentRegistrationEntities())
             {
-                //get the selected row from both datagridviews
+
+                var selectedCourses =dataGridViewCourses.SelectedRows
+            .OfType<DataGridViewRow>()
+            .Where(row => !row.IsNewRow)
+            .ToArray();
+                var selectedStudent = dataGridViewStudents.SelectedRows
+            .OfType<DataGridViewRow>()
+            .Where(row => !row.IsNewRow)
+            .ToArray();
+
+                foreach (var stu in selectedStudent)
+                {
+                    foreach (var cours in selectedCourses)
+                    {
+                        Course cour =(Course) cours.DataBoundItem;
+                        Student st = (Student)stu.DataBoundItem;
+                        Course co= context.Courses.Include("Students").Where(c => c.CourseId == cour.CourseId).FirstOrDefault();
+                        co.Students.Add(context.Students.Where(s => s.StudentId == st.StudentId).FirstOrDefault());
+                        context.SaveChanges();
+                    }
+
+                }
+             /*   //get the selected row from both datagridviews
                 Course course = (Course)dataGridViewCourses.CurrentRow.DataBoundItem;
                 Student student = (Student)dataGridViewStudents.CurrentRow.DataBoundItem;
                 //get the course and add the student to it
                 Course cou = context.Courses.Include("Students").Where(c => c.CourseId == course.CourseId).FirstOrDefault();
                 cou.Students.Add(context.Students.Where(s => s.StudentId == student.StudentId).FirstOrDefault());
-                context.SaveChanges();
+                context.SaveChanges();*/
 
             }
             dispalyRegistration();
@@ -137,8 +176,21 @@ namespace StudentRegistrationApp
                                                 StudentLastName = student.StudentLastName,
 
                                             }).ToList();
+                List<data1> dt = new List<data1>(studentRegistrations.Count);
+                foreach(var r in studentRegistrations)
+                {
 
-                dataGridViewRegistrations.DataSource = studentRegistrations;
+                    data1 d = new data1();
+                    d.CourseId = r.CouseNumber;
+                    d.DepartmentCode = r.DepartmentCode;
+                    d.CourseName = r.CourseName;
+                    d.StudentId = r.StudentId;
+                    d.StudentLastName = r.StudentLastName;
+                    dt.Add(d);
+                }
+
+                
+                dataGridViewRegistrations.DataSource = dt;
 
             }
         }
@@ -228,6 +280,16 @@ namespace StudentRegistrationApp
             //  and the form will be reinitialized
 
             form.Hide();
+        }
+        public  partial class data1
+        {
+            public string DepartmentCode { get; set; }
+            public Int32 CourseId { get; set; }
+            public string CourseName { get; set; }
+            public Int32 StudentId { get; set; }
+            public string StudentLastName { get; set; }
+
+
         }
     }
 }
